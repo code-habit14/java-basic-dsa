@@ -101,6 +101,44 @@ public class sorting {
         }
     }
 
+    public static void heapSort(int arr[]){
+        int n=arr.length;
+        for (int i=n/2-1;i>=0;i--){
+            heapify(arr,n,i);
+        }
+
+        for (int end=n-1;end>0;end--){
+            swap(arr,0,end);
+            heapify(arr,end,0);
+        }
+
+    }
+
+    public static void heapify(int arr[], int size,int root){
+        int largest = root;
+        int left = 2*root+1;
+        int right = 2*root+2;
+
+        if (left<size && arr[left] > arr[largest]){
+            largest=left;
+        }
+        if (right<size && arr[right]>arr[largest]){
+            largest=right;
+        }
+        if (largest != root){
+            swap(arr,root,largest);
+            heapify(arr,size,largest);
+        }
+
+
+
+    }
+    public static void swap(int arr[],int i,int j){
+        int temp = arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+
 
 
 
@@ -119,7 +157,8 @@ public class sorting {
 //        selectionSort(arr);
 //        insertionSort(arr);
 //        mergeSort(arr,0,arr.length-1);
-        quickSort(arr,0,arr.length-1);
+//        quickSort(arr,0,arr.length-1);
+        heapSort(arr);
 
         print(arr);
 
